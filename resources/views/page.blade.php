@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Hello World!</div>
+                <div class="title">Page!</div>
             </div>
         </div>
     </body>
