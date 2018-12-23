@@ -17,18 +17,45 @@ Route::get('/',
             function () {return view('welcome');}
         ]);
 
+Route::get('/article/{id}',
+    [
+        'as' => 'article',
+        function ($id) {
+        echo $id;
+}
+    ]);
+
+Route::get('/page/{cat}/{id}', function ($id) {
+
+    echo '<pre>';
+//    echo Config::get('app.locale');
+    echo $id;
+    echo '</pre>';
+    // return view('page');
+});
 
 
-Route::get('/about/{id}', 'FirstController@show');
+/*
+Route::post('/comments', function (){
 
-Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=> 'articles']);
-Route::get('/article/{id}', ['uses'=>'Admin\Core@getArticle', 'as'=> 'article']);
+    echo '<pre>';
 
-// List pages
-//Route::get('/pages/add', 'Admin\CoreResource@add');
-//Route::resource('/pages', 'Admin\CoreResource');
+    var_dump($_POST);
 
-Route::controller('/pages', 'PagesController');
+    echo '</pre>';
+
+});
+*/
+
+Route::match(['get','post'], '/comments', function (){
+
+    echo '<pre>';
+
+    var_dump($_POST);
+
+    echo '</pre>';
+
+});
 
 Route::group(['prefix'=>'admin/{id}'], function (){
 

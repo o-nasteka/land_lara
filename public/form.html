@@ -9,13 +9,15 @@
 </head>
 <body>
 
-<form action="/comments" method="POST">
+<!--<form action="/comments" method="POST">-->
+<form action="/pages" method="POST">
     Name
     <input type="text" name="name"> <br>
     Comment <br>
     <textarea name="text" id="text-id" cols="30" rows="10"></textarea>
 
-    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+    <!--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />-->
+    <!--<input type="hidden" name="_method"  value="PUT" />-->
 
     <input type="submit" value="Add">
 
