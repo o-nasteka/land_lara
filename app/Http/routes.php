@@ -11,21 +11,24 @@
 |
 */
 
-Route::get('/',
-        [
-            'as' => 'home',
-            function () {return view('welcome');}
-        ]);
+//Route::get('/', ['as' => 'home', function () {return view('welcome');}]);
+//Route::get('/', ['as' => 'home', 'middleware'=>'auth', 'uses'=>'Admin\IndexController@show']);
+Route::get('/', ['as' => 'home', 'uses'=>'Admin\IndexController@show']);
+
+Route::get('/login', ['as' => 'login', 'uses'=>'LoginController@index']);
 
 
-
-Route::get('/about/{id}', 'FirstController@show');
+//Route::get('/about/{id}', 'FirstController@show');
+Route::get('/about', 'Admin\AboutController@show')->name('about');
+Route::match(['get','post'],'/contact/{data?}', ['uses'=>'Admin\ContactController@show', 'as'=>'contact']);
 
 Route::get('/articles', ['uses'=>'Admin\Core@getArticles', 'as'=> 'articles']);
 //Route::get('/article/{id}', ['uses'=>'Admin\Core@getArticle', 'as'=> 'article']);
 
 //Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article', 'middleware'=>'mymiddle']);
-Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article']);
+//Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article']);
+Route::get('/article/{id}', ['middleware'=>'mymiddle:admin','uses'=>'Admin\Core@getArticle', 'as'=>'article']);
+//Route::get('/article/{page}', ['uses'=>'Admin\Core@getArticle', 'as'=>'article'])->middleware(['mymiddle']);
 
 // List pages
 //Route::get('/pages/add', 'Admin\CoreResource@add');
@@ -53,7 +56,7 @@ Route::controller('/pages', 'PagesController');
 //
 //});
 
-Route::group(['middleware'=>['web']], function (){
+Route::group(['middleware'=>['auth']], function (){
 
 
 });
