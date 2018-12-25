@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,9 +16,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Blade::directive('myDir', function ($var){
-            return "<h1>New Derictive - $var</h1>";
+//        Blade::directive('myDir', function ($var){
+//            return "<h1>New Derictive - $var</h1>";
+//        });
+
+        Response::macro('myRes', function ($value){
+            return Response::make($value);
         });
+
+
     }
 
     /**
