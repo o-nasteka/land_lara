@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+//use App\Country;
 
 class User extends Authenticatable
 {
@@ -23,4 +24,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function country(){
+        return $this->hasOne('App\Country', 'user_id', 'id'); // user_id (foreign_key) // id (local_key)
+    }
+
+    public function articles(){
+        return $this->hasMany('App\Article');
+    }
 }

@@ -1,5 +1,10 @@
 <?php
 
+// Show All SQL Query
+//DB::listen(function($query) {
+//    dump($query->sql, $query->bindings);
+//});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

@@ -17,6 +17,27 @@ class AboutController extends Controller
         if (view()->exists('default.about')){
 
             $page = DB::select("SELECT `name`,`text` from `pages` WHERE `alias` = :alias",['alias'=>'about']);
+
+            // insert
+//            DB::insert("INSERT INTO `articles` (`name`,`text`) VALUES (?,?)",['test123','lorem text']);
+
+            // get last insert ID
+//            $id = DB::getPdo()->lastInsertId();
+
+            // update
+//            DB::update("UPDATE `articles` SET `name` = ? WHERE `id` = ? ",[
+//                'NEW TEST NAME1212',10
+//            ]);
+
+            // delete
+//            DB::delete("DELETE FROM `articles` WHERE `id` = ?",[10]);
+
+            // select
+            //            $articles = DB::select("SELECT * FROM `articles` WHERE id = ? ",[2]);
+//            $articles = DB::select("SELECT * FROM `articles`");
+//            dump($id);
+//            dump($articles);
+
             return view('default.about')->withPage($page[0])->withTitle('About our company');
 
         }

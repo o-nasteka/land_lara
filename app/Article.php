@@ -21,5 +21,8 @@ class Article extends Model
 
     protected $dates = ['deleted_at']; // for SoftDelete
 
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 
 }

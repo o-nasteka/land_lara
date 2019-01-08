@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use Session;
+use App\User;
+use DB;
+
 
 class Core extends Controller
 {
+
+    protected static $articles;
+
     public function __construct()
     {
 //        $this->middleware('mymiddle');
@@ -21,6 +28,83 @@ class Core extends Controller
 //    }
 
 //
+
+// #19 Query Builder
+public static function addArticles($array){
+        return self::$articles[] = $array;
+}
+
+public function getArticles(){
+//        DB::table('articles')->chunk(2,function($articles){
+//
+//            foreach ($articles as $article) {
+//                Core::addArticles($article);
+//            }
+//        });
+//        dump(self::$articles);
+//        dump($articles);
+//
+//
+//    $articles = DB::table('articles')->get();
+//    $articles = DB::table('articles')->first();
+//    $articles = DB::table('articles')->value('name');
+//    $articles = DB::table('articles')->pluck('name');
+//    $articles = DB::table('articles')->count();
+//    $articles = DB::table('articles')->max('id');
+//    $articles = DB::table('articles')->select('name','id','text')->get();
+//    $articles = DB::table('articles')->distinct()->select('name')->get();
+
+//    $query = DB::table('articles')->select('name');
+    //
+    // some check
+    //
+//    $articles = $query->addSelect('text')->get();
+
+//    dump($articles);
+
+//    $articles = DB::table('articles')->select('name','text AS fulltext')
+//        ->where('id','>',2)
+//        ->where('text','like','lorem%','or')
+//        ->orWhere('id','<',2)
+//        ->get();
+
+//    $articles = DB::table('articles')->whereBetween('id',[1,5])->get();
+//    $articles = DB::table('articles')->whereNotBetween('id',[1,5])->get();
+//    $articles = DB::table('articles')->whereIn('id',[1,2,4])->get();
+//    $articles = DB::table('articles')->whereNotIn('id',[1,2,4])->get();
+
+    // limit
+//    $articles = DB::table('articles')->take(4)->get();
+//    $articles = DB::table('articles')->take(4)->skip(2)->get();
+//    dump($articles);
+
+//    DB::table('articles')->insert(
+//        [
+//            ['name'=>'Test2323', 'text'=>'Hello 2223'],
+//            ['name'=>'Test3443', 'text'=>'Hello 3443']
+//
+//
+//        ]
+//
+//    );
+
+    // Insert and Get Last ID
+    $result = DB::table('articles')->insertGetId(['name'=>'Test2323', 'text'=>'Hello 2223']);
+
+//    $articles = DB::table('articles')->get();
+
+    dump($result);
+
+//    $articles = DB::table('articles')->select('name','text AS fulltext')
+//        ->where([
+//                    ['id','>',2],
+//                    ['text','like','lorem%','or']
+//            ])
+//        ->get();
+
+//    dump($articles);
+
+}
 
 //
 //  Eloquent 20
@@ -142,10 +226,32 @@ class Core extends Controller
 
 
 // #22 Eloquent Relationships
-    public function getArticles(){
+//    public function getArticles(){
+//        $user = User::find(1);
+//        $countries = $user->country;
+//        foreach ($countries as $country){
+//            echo $country.'<br>';
+//        }
+//        $country = Country::find(1);
+//        dump($country);
 
-    }
+//        $articles = $user->articles()->where('id','>',1)->get();
+//        $articles = $user->articles()->where('id',2)->first();
+//        foreach ($articles as $article){
+//            echo $article->name.'<br>';
+//        }
 
+//        $article = Article::find(2);
+//        dump($article->user->name);
+
+//        dump($countries);
+//        foreach ($countries as $country){
+//            echo $country;
+//        }
+//        dump($user);
+//        return $user;
+//    }
+//
 
     public function getArticle($id){
 
